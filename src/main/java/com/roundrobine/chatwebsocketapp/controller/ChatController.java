@@ -7,23 +7,27 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+/**
+ * created by roundrobine on  Jun, 2018
+ **/
+
+
 @Controller
 public class ChatController {
 
     @MessageMapping("/send/message")
-    @SendTo("/chat/public")
+    @SendTo("/chat")
     public ChatMessage sendMessage(ChatMessage chatMessage) {
         return chatMessage;
     }
 
     @MessageMapping("/addUser")
-    @SendTo("/chat/public")
+    @SendTo("/chat")
     public ChatMessage addUser(ChatMessage chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
 
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
-
 
 }
