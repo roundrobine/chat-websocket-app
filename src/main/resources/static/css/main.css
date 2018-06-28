@@ -1,0 +1,94 @@
+.hidden {
+    display: none !important;
+}
+
+#signup {
+    text-align: center;
+}
+
+#card-body {
+    max-height: 80vh;
+}
+
+#chat-page ul {
+    list-style-type: none;
+    background-color: #FFF;
+    margin: 0;
+    overflow: auto;
+    overflow-y: scroll;
+    padding: 0 20px 0px 20px;
+    max-height: 68vh;
+}
+
+#chat-page #messageForm {
+    padding: 20px;
+}
+
+#chat-page ul li {
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+#chat-page ul li p {
+    margin: 0;
+}
+
+#chat-page .event-message {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+#chat-page .event-message p {
+    color: #777;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+#chat-page .chat-message {
+    padding-left: 68px;
+    position: relative;
+}
+
+#chat-page .chat-message i {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+#messageForm .input-group button {
+    margin-left: 5px;
+}
+
+.connecting {
+    padding-top: 15px;
+    text-align: center;
+    color: #777;
+    position: absolute;
+    top: 65px;
+    width: 85%;
+}
+
+.nav-header {
+    min-height: 4rem;
+    background-color: #563d7c !important;
+    margin-bottom: 30px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.nav-header a {
+    color: white;
+}
