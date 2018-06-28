@@ -45,7 +45,7 @@ public class LiveChatEventListener {
             chatMessage.setSender(username);
             chatMessage.setTimestamp(new Date());
 
-            simpMessageSendingOperations.convertAndSend("/chat", chatMessage);
+            simpMessageSendingOperations.convertAndSend("/chat/broadcast/", chatMessage);
         }
     }
 }
