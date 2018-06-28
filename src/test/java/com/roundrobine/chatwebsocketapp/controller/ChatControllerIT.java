@@ -12,7 +12,6 @@ import org.springframework.messaging.simp.stomp.StompFrameHandler;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
@@ -73,7 +72,21 @@ public class ChatControllerIT {
     }
 
     @Test
-    public void addUser() {
+    public void addUser() throws InterruptedException, ExecutionException, TimeoutException{
+
+        stompClient.setMessageConverter(new MappingJackson2MessageConverter());
+
+        StompSession stompSession = stompClient.connect(URL, new StompSessionHandlerAdapter() {
+        }).get(1, TimeUnit.SECONDS);
+
+        stompSession.subscribe(SUBSCRIBE_TO_CHAT_ENDPOINT, new CreateChatStompFrameHandler());
+        stompSession.send(SEND_ADD_USER_ENDPOINT, new ChatMessage(MessageType.JOIN, "User just join the chat!",
+                "roundrobine", new Date()));
+        ChatMessage message  = completableFuture.get(5, TimeUnit.SECONDS);
+        assertEquals("User just join the chat!", message.getContent());
+        assertEquals("roundrobine", message.getSender());
+        assertEquals(MessageType.JOIN, message.getType());
+        assertEquals(true, stompSession.isConnected());
     }
 
 
